@@ -20,6 +20,7 @@ linechart_api = "linechart_api.main:main"
 pandas = "2.3.1"
 numpy = "^1.26"
 matplotlib = "3.7.0"
+openpyxl = "^3.1.5"
 
 
 [tool.poetry.group.test.dependencies]
