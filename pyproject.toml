@@ -14,7 +14,7 @@ dependencies = [
 packages = [{include = "linechart_api", from = "src"}]
 
 [tool.poetry.scripts]
-linechart-api = "linechart-api.main:main"
+linechart_api = "linechart_api.main:main"
 
 [tool.poetry.group.dev.dependencies]
 pandas = "2.3.1"
