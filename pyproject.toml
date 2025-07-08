@@ -1,0 +1,41 @@
+[project]
+name = "linechart-api"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "raylai",email = "chunjueilai@gmail.com"}
+]
+readme = "README.md"
+requires-python = "3.11.4"
+dependencies = [
+]
+
+[tool.poetry]
+packages = [{include = "linechart_api", from = "src"}]
+
+[tool.poetry.scripts]
+linechart-api = "linechart-api.main:main"
+
+[tool.poetry.group.dev.dependencies]
+pandas = "2.3.1"
+numpy = "2.3.0"
+matplotlib = "3.7.0"
+
+
+[tool.poetry.group.test.dependencies]
+flake8 = "^7.3.0"
+isort = "^6.0.1"
+pre-commit = "^4.2.0"
+commitizen = "^4.8.3"
+
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "poetry"
+update_changelog_on_bump = true
+major_version_zero = true
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
