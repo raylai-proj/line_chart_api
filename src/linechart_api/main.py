@@ -4,7 +4,7 @@ from tkinter import filedialog, messagebox
 import matplotlib.pyplot as plt
 import pandas as pd
 
-from linechart_api.utility.color import COLOR
+from linechart_api import utility
 
 TIME = ["time/mn", "charge time (min)"]
 YAXIS = [""]
@@ -46,8 +46,8 @@ def draw_linechart(file_path):
             # cor_x_label = remove_suffix(cur_col[col])
             cor_y_label = remove_suffix(cur_col[col + 1])
             if idx == 0:
-                ax.plot(cur_x, cur_y, color=COLOR[idx])
-                ax.set_ylabel(cor_y_label, color=COLOR[idx])
+                ax.plot(cur_x, cur_y, color=utility.COLOR[idx])
+                ax.set_ylabel(cor_y_label, color=utility.COLOR[idx])
                 # ax.spines["right"].set_color(COLOR[idx])
                 all_ylabel[cor_y_label] = True
                 left_ylabel = cor_y_label
@@ -55,12 +55,12 @@ def draw_linechart(file_path):
                 print(ax.yaxis.get_tick_params("major"))
                 # y_label_dict[cor_y_label] = True
             elif cor_y_label == left_ylabel:
-                ax.plot(cur_x, cur_y, color=COLOR[idx])
+                ax.plot(cur_x, cur_y, color=utility.COLOR[idx])
             else:
                 par = ax.twinx()
-                par.plot(cur_x, cur_y, color=COLOR[idx])
+                par.plot(cur_x, cur_y, color=utility.COLOR[idx])
                 if cor_y_label not in all_ylabel:
-                    par.set_ylabel(cor_y_label, color=COLOR[idx])
+                    par.set_ylabel(cor_y_label, color=utility.COLOR[idx])
                     if y_label_dict:
                         par.spines["right"].set_position(("axes", 1.2))
                     # else:
