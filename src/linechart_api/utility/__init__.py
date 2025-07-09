@@ -1,3 +1,3 @@
-from .color import COLOR
+from .window_helper import Components
 
-__all__ = ["COLOR"]
+__all__ = ["Components"]
