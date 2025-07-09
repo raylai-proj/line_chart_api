@@ -5,7 +5,7 @@ from linechart_api import utility
 
 def main():
     window = tk.Tk()
-    utility.Window(window)
+    utility.Components(window)
     window.mainloop()
 
 
