@@ -38,9 +38,7 @@ class Components(object):
         )
 
     def on_submit(self):
-        act = self.dropdown.get()
-        action = ACTDICT[act]
-        action()
+        ACTDICT[self.dropdown.get()]()
 
     def on_exit(self):
         self.window.quit()
