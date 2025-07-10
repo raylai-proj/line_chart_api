@@ -48,7 +48,6 @@ def draw_linechart(file_path):
                 all_ylabel[cor_y_label] = True
                 left_ylabel = cor_y_label
                 ax.yaxis.set_tick_params()
-                print(ax.yaxis.get_tick_params("major"))
             elif cor_y_label == left_ylabel:
                 ax.plot(cur_x, cur_y, color=COLOR[idx])
             else:
