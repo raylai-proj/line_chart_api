@@ -5,11 +5,8 @@ The development of this project is refer to following webpages: <br >
 The project has several functional components and will be introduced sequentially. <br >
 
 ## The Window layout:
-The window layout class development utilized library:<br >
-1. tkinter,<br >
-2. tkinter.ttk,<br >
-and ttk apis: label, button, combobox.<br >
-The class development was refer to the following websites and chatGPT:
+The window layout class development utilized library: tkinter, tkinter.ttk, and ttk.py apis: label, button, combobox.<br >
+The class development was refer to the following websites and chatGPT: <br >
 1. tkinter — Python interface to Tcl/Tk: https://docs.python.org/3/library/tkinter.html<br >
 2. TkDocs-Basic Widgets: https://tkdocs.com/tutorial/widgets.html#combobox<br >
 3. Multiple root windows with Tkinter: https://www.reddit.com/r/learnpython/comments/51ry80/multiple_root_windows_with_tkinter/<br >
@@ -28,7 +25,7 @@ The class development was refer to the following websites and chatGPT:
 ## Lessons learned when developing window layout:
 1. What is namespace in python: <br >
 In Python, a namespace is like a labeled box where names (like variables, functions, classes) are stored. When saying `import tkinter as tk`, it basically means <br >
-> Import everything from tkinter module and store it in a box called "tk"
-<br >
+> Import everything from tkinter module and store it in a box called "tk" <br >
+
 2. Since `ttk.py` and `__init__.py` both in tkinter/, if I import tkinter as tk, why it doesn't import ttk as well: <br >
 > Even though both `__init__.py` and `ttk.py` are in tkinter/ package, `import tkinter as tk` will only import `__init__.py` and no other submodule like `ttk.py`. To use `ttk.py`, we have to import it explicitly, such as `from tkinter import ttk`<br >
