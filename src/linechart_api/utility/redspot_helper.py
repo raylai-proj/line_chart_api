@@ -1,6 +1,7 @@
 from tkinter import filedialog, messagebox
 
 import cv2
+import matplotlib.pyplot as plt
 import numpy as np
 
 OPENFILEFOLDEREMOJI = "\U0001f4c2"
@@ -39,6 +40,33 @@ def find_hottest_spot(color_img):
 
 def process_image(file_path):
     """analyze each images from file paths and draw arrow to point out"""
+    try:
+        color_img = cv2.imread(file_path)
+        if color_img is None:
+            raise Exception(f"Unable to read file: {color_img}")
+        cx, cy = find_hottest_spot(color_img)
+
+        # draw the line to point hottest centroid
+        annotated_img = color_img.copy()
+
+        height, width = annotated_img.shape[:2]
+        cv2.arrowedLine(
+            annotated_img,
+            pt1=(cx + (height // 15), cy - (width // 15)),
+            pt2=(cx, cy),
+            color=(0, 0, 255),
+            thickness=7,
+            tipLength=0.4,
+        )
+
+        annotated_rgb = cv2.cvtColor(src=annotated_img, code=cv2.COLOR_BGR2RGB)
+
+        plt.figure(figsize=(height / DPI, width / DPI), dpi=DPI)
+        plt.imshow(annotated_rgb)
+        plt.axis("off")
+        plt.show()
+    except Exception as e:
+        raise Exception(e)
 
 
 def analyze_thermo_images():
