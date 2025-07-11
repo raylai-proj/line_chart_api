@@ -207,7 +207,7 @@ marimo/_lsp/
 __marimo__/
 
 # Data
-data/*.xlsx
-data/*.xls
-data/*.jpg
-data/*.png
+src/linechart_api/data/*.xlsx
+src/linechart_api/data/*.xls
+src/linechart_api/data/*.jpg
+src/linechart_api/data/*.png
