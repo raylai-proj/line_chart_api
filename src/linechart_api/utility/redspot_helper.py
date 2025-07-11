@@ -1,3 +1,5 @@
+from tkinter import filedialog, messagebox
+
 OPENFILEFOLDEREMOJI = "\U0001f4c2"
 
 
@@ -11,3 +13,13 @@ def process_image(file_paths):
 
 def analyze_thermo_images():
     """prompt user to select thermographic images"""
+    try:
+        files = filedialog.askopenfilenames(
+            title=f"Open {OPENFILEFOLDEREMOJI}", filetypes=("Image Files", ".jpg .png")
+        )
+        if not files:
+            raise ValueError("No file selected.")
+        for file in list(files):
+            process_image(file)
+    except ValueError as e:
+        messagebox.showwarning(title="Warning", message=e)
