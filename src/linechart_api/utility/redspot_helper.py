@@ -15,7 +15,8 @@ def analyze_thermo_images():
     """prompt user to select thermographic images"""
     try:
         files = filedialog.askopenfilenames(
-            title=f"Open {OPENFILEFOLDEREMOJI}", filetypes=("Image Files", ".jpg .png")
+            title=f"Open {OPENFILEFOLDEREMOJI}",
+            filetypes=[("Image File", "*.jpg *.jpeg"), ("Image File", "*.png")],
         )
         if not files:
             raise ValueError("No file selected.")
