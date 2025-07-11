@@ -1,9 +1,11 @@
 from tkinter import ttk
 
 from .linechart_helper import generate_linechart
+from .redspot_helper import analyze_thermo_images
 
 ACTDICT = {
     "Generate line chart": generate_linechart,
+    "Analyze thermo image": analyze_thermo_images,
 }
 FONT = ("Arial", 12)
 PAD = 10
