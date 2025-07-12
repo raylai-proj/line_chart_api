@@ -88,13 +88,13 @@ def process_image(file_path):
         # draw the line to point hottest centroid
         annotated_img = color_img.copy()
         # # testing find the correct contour
-        cv2.drawContours(
-            image=annotated_img,
-            contours=[max_contour],
-            contourIdx=-1,
-            color=(255, 255, 255),
-            thickness=3,
-        )
+        # cv2.drawContours(
+        #     image=annotated_img,
+        #     contours=[max_contour],
+        #     contourIdx=-1,
+        #     color=(255, 255, 255),
+        #     thickness=3,
+        # )
 
         height, width = annotated_img.shape[:2]
         cv2.arrowedLine(
