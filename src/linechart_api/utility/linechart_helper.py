@@ -67,12 +67,14 @@ def draw_linechart(file_path):
 
 def generate_linechart():
     try:
-        file_path = filedialog.askopenfilename(
-            title="Open " + OPENFILEFOLDEREMOJI, filetypes=[("Excel File", ".xlsx xls")]
+        files = filedialog.askopenfilenames(
+            title=f"Open {OPENFILEFOLDEREMOJI}",
+            filetypes=[("Excel File", "*.xlsx"), ("Excel File", "*.xls")],
         )
-        if not file_path:
+        if not files:
             raise ValueError("No excel sheet selected.")
-        draw_linechart(file_path)
+        for file in files:
+            draw_linechart(file)
 
     except ValueError as e:
         messagebox.showwarning(title="Warning", message=e)
