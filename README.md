@@ -1,8 +1,5 @@
 # line_chart_api <br >
-This is a comprehensive project that provide daily work simulation. <br >
-The project allow users to quickly generate results of their laboratory work. <br >
-The development of this project is refer to following webpages: <br >
-The project has several functional components and will be introduced sequentially. <br >
+This is a comprehensive project that provide daily work simulation. The project allow users to quickly generate results of their laboratory work. The project has several functional components and will be introduced sequentially. <br >
 
 ## The Window layout:
 The window layout class development utilized library: tkinter, tkinter.ttk, and ttk.py apis: label, button, combobox.<br >
@@ -49,3 +46,20 @@ The development of thermal image analyzer was referred as following website and 
 14. geeksforgeeks - cv2.imread() method - Python OpenCV:　https://www.geeksforgeeks.org/python/python-opencv-cv2-imread-method/<br >
 15. Find and Draw Contours using OpenCV - Python: https://www.geeksforgeeks.org/python/find-and-draw-contours-using-opencv-python/<br >
 16. numpy.zeros_like: https://numpy.org/doc/stable/reference/generated/numpy.zeros_like.html<br >
+
+## Lessons learned when developing thermal image analyzer:<br >
+1. What data type does parameter filetypes require in `filedialog.askopenfilenames()`:<br >
+The filetypes parameter ask for **a list of turples, such as [("Excel File", "*.xls *.xlsx")]**. Always remember **[ ]** to make it as list even you only have 1 type.<br >
+2. Why we have to convert graph to grayscale to detect the highest temperature spot:<br >
+- The thermal cameras sense the heat as brightness.
+- Coverting color to grayscale reduce channels from 3 (RGB) to 1 (brightness) which reduce complexity.
+- When finding the hottest / most brightness spot, Lots of OpenCV library's only accept 1 channel array.
+3. Why when calling `cv2.cvtCOLOR()`, the code is `cv2.COLOR_BGR2HSV` not `cv2.COLOR_RGB2HSV`:<br >
+The `cv2.imread` read the import image as BGR, so after reading file the color is BGR not RGB<br >
+4. In `cv2.COLOR_BGR2HSV`, what does HSV stand for and why use HSV: <br >
+The HSV stands for Hue, Saturation, and Value. The original method to detect brightness as heat will only work when the hottest temperature was displayed as white. When the thermal images use Rainbow color-to-temperature mapping the hottest temperature was displayed as red. Thus, using HSV matches the sequence of Rainbow color-to-temperature mapping and allow the feature detect red as hottest point in the thermal image.
+5. What's different between `plt.imshow()` and `plt.show()`:<br >
+`plt.imshow(image)` means put `image` in the canvas.<br >
+`plt.show()` means open a window and show me everything I have drawn<br >
+6. Why we use `plt.figure()` not `plt.subplots()`:<br >
+`plt.subplots()` create both **figure** and **axes** while `plt.figure()` only create an empty canvsa which is suit for thermal graph analyzer only output image without axes.<br >
