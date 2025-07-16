@@ -59,9 +59,16 @@ The `cv2.imread` read the import image as BGR, so after reading file the color i
 4. In `cv2.COLOR_BGR2HSV`, what does HSV stand for and why use HSV: <br >
 The HSV stands for Hue, Saturation, and Value. The original method to detect brightness as heat will only work when the hottest temperature was displayed as white. When the thermal images use Rainbow color-to-temperature mapping the hottest temperature was displayed as red. Thus, using HSV matches the sequence of Rainbow color-to-temperature mapping and allow the feature detect red as hottest point in the thermal image.
 5. What's different between `plt.imshow()` and `plt.show()`:<br >
-> `plt.imshow(image)` means put `image` in the canvas.<br >
-> `plt.show()` means open a window and show me everything I have drawn<br >
+- `plt.imshow(image)` means put `image` in the canvas.<br >
+- `plt.show()` means open a window and show me everything I have drawn<br >
 6. Why we use `plt.figure()` not `plt.subplots()`:<br >
 `plt.subplots()` create both **figure** and **axes** while `plt.figure()` only create an empty canvsa which is suit for thermal graph analyzer only output image without axes.<br >
 7. Why we use `cv2.GaussianBlur()`: <br >
 `cv2.GaussianBlur()` apply Gaussian Kernel on the image to blur it. This will reduce noise in image, such as single hot pixel, as well as highlight the heat regions to make `cv2.findContours()` return contours with heat regions.<br >
+8. How to make `cv2.arrowedLine()` more obvious:<br >
+To make `cv2.arrowedLine()` more obvious, we can adjust the parameters:
+- `color`, which we assign contrast BGR for high visibility <br >
+- `thickness` which we can assign 5-7 for thick line<br >
+- `tipLength` which we can set 0.4 for larger arrowhead size<br >
+9. What does **mask** mean: <br >
+**mask** in opencv means filter/process array. A mask is a single channel with same size (low, column) of the original matrix. Use the mask to apply for the original matrix will filter/process the part of original matrix.<br >
