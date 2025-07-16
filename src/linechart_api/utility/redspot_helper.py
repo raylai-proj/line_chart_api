@@ -121,7 +121,7 @@ def analyze_thermo_images():
     try:
         files = filedialog.askopenfilenames(
             title=f"Open {OPENFILEFOLDEREMOJI}",
-            filetypes=[("Image File", "*.jpg *.jpeg"), ("Image File", "*.png")],
+            filetypes=[("Image File", "*.jpg *.jpeg *.png")],
         )
         if not files:
             raise ValueError("No file selected.")
