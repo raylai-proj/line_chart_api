@@ -1,3 +1,17 @@
+"""
+Summary: linechart_helper.py generate and display line charts from Excel time-series data.
+
+This module provides functionality to visualize time-series data from Excel sheets
+as line charts. It is designed to handle files with multiple sheets, extract paired
+X and Y columns, and plot each sheet with multiple Y-axes when necessary.
+
+Functions:
+- check_valid_col: Identifies valid column indices based on time-related keywords.
+- remove_suffix: Cleans unit suffixes from column names when duplicated.
+- draw_linechart: Reads an Excel file and plots time-series charts with dynamic Y-axes.
+- generate_linechart: Prompts user to select Excel files and generates charts for each sheet.
+"""
+
 from tkinter import filedialog, messagebox
 
 import matplotlib.pyplot as plt
@@ -10,7 +24,7 @@ TIME = ["time/mn", "charge time (min)"]
 
 
 def check_valid_col(cols):
-    # find valid columns for plot
+    """Find valid columns for plot."""
     idxs = []
     for idx, val in enumerate(cols):
         if any(word in str.lower(val) for word in TIME):
@@ -19,11 +33,12 @@ def check_valid_col(cols):
 
 
 def remove_suffix(val):
-    # correct unit by remove suffix when having duplicated unit
+    """Correct unit by remove suffix when having duplicated unit."""
     return val[:-2] if val[-2] == "." else val
 
 
 def draw_linechart(file_path):
+    """Draw the linechart for each sheet in excel sheet."""
     dfs = pd.read_excel(file_path, sheet_name=None)
     for key, value in dfs.items():
         cur_df = value.copy()
@@ -66,10 +81,11 @@ def draw_linechart(file_path):
 
 
 def generate_linechart():
+    """Prompt user to select files and generate line charts."""
     try:
         files = filedialog.askopenfilenames(
             title=f"Open {OPENFILEFOLDEREMOJI}",
-            filetypes=[("Excel File", "*.xlsx"), ("Excel File", "*.xls")],
+            filetypes=[("Excel File", "*.xlsx *.xls")],
         )
         if not files:
             raise ValueError("No excel sheet selected.")

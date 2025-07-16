@@ -1,3 +1,18 @@
+"""
+Summary: window_helper.py creates a GUI for selecting and executing analysis actions.
+
+This module defines a Components class that builds a basic tkinter-based interface
+with a dropdown to choose between generating line charts or analyzing thermographic images.
+
+Features:
+- Dropdown selection of analysis actions (line chart or thermal image).
+- Submit and Exit buttons for executing or quitting.
+- Automatic enabling/disabling of the Submit button based on user selection.
+
+Classes:
+- Components: Encapsulates the entire UI layout and event handling logic.
+"""
+
 from tkinter import ttk
 
 from .linechart_helper import generate_linechart
@@ -12,7 +27,10 @@ PAD = 10
 
 
 class Components(object):
+    """Components class create a window to provide actions in daily task."""
+
     def __init__(self, window):
+        """Initialize Components object and creating a window for daily task simulation."""
         self.window = window
         self.label = ttk.Label(self.window, font=FONT, text="Select the Action:")
         self.label.grid(column=0, row=0, padx=PAD, pady=PAD, sticky="e")
@@ -40,7 +58,9 @@ class Components(object):
         )
 
     def on_submit(self):
+        """Execute function when clicking on_submit."""
         ACTDICT[self.dropdown.get()]()
 
     def on_exit(self):
+        """Quit window when clicking on_exit."""
         self.window.quit()
