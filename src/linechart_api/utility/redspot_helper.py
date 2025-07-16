@@ -1,3 +1,21 @@
+"""
+Summary: redspot_helper.py help detect hotspot/redspot in thermal image.
+
+This module provides utilities to analyze thermographic images and identify
+the hottest/reddest regions. It uses OpenCV to process color images, extract heat signatures based
+on intensity or red color, and highlights key areas using contour detection and centroid
+calculation.
+
+Functions:
+- find_hottest_contour: Detects the largest hot region based on grayscale intensity.
+- find_reddest_contour: Detects the largest red region using HSV color thresholding.
+- find_centroid: Calculates the centroid of a given contour.
+- process_image: Processes an image and overlays an arrow pointing to the hottest/red region.
+- analyze_thermo_images: Prompts user to select image files and analyze each one interactively.
+
+This script is intended for visual thermal analysis and hotspot detection.
+"""
+
 from tkinter import filedialog, messagebox
 
 import cv2
@@ -16,7 +34,7 @@ RED_HSV = {
 
 
 def find_hottest_contour(color_img):
-    """check if hottest region is distributed and find the largest hottest region"""
+    """Check if hottest region is distributed and find the largest hottest region."""
     # convert from BGR to gray scale
     gray_img = cv2.cvtColor(src=color_img, code=cv2.COLOR_BGR2GRAY)
     # use gaussian blur to smooth the grayscale image
@@ -39,7 +57,7 @@ def find_hottest_contour(color_img):
 
 
 def find_reddest_contour(color_img):
-    """find the reddest contour"""
+    """Find the reddest contour."""
     hsv_img = cv2.cvtColor(src=color_img, code=cv2.COLOR_BGR2HSV)
     # define HSV ranges for red
     lower_red1, upper_red1 = np.array(RED_HSV["lower_red1"]), np.array(
@@ -65,6 +83,7 @@ def find_reddest_contour(color_img):
 
 
 def find_centroid(contour):
+    """Locate the centroid from input contour."""
     # find the centroid using cv2.moments
     m_dict = cv2.moments(contour)
     if m_dict["m00"] == 0:
@@ -75,7 +94,7 @@ def find_centroid(contour):
 
 
 def process_image(file_path):
-    """analyze each images from file paths and draw arrow to point out"""
+    """Analyze each images from file paths and draw arrow to point out."""
     try:
         color_img = cv2.imread(file_path)
         if color_img is None:
@@ -116,7 +135,7 @@ def process_image(file_path):
 
 
 def analyze_thermo_images():
-    """prompt user to select thermographic images"""
+    """Prompt user to select thermographic images."""
     try:
         files = filedialog.askopenfilenames(
             title=f"Open {OPENFILEFOLDEREMOJI}",
