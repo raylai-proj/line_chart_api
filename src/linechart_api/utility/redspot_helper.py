@@ -27,7 +27,6 @@ def find_hottest_contour(color_img):
     _, hot_mask = cv2.threshold(
         blur_img, thresh=max_val * 0.8, maxval=255, type=cv2.THRESH_BINARY
     )
-    hot_mask = hot_mask.astype(np.uint8)
     # find the contours of hot regions
     contours, _ = cv2.findContours(
         hot_mask, mode=cv2.RETR_EXTERNAL, method=cv2.CHAIN_APPROX_SIMPLE
