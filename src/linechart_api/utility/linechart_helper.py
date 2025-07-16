@@ -69,7 +69,7 @@ def generate_linechart():
     try:
         files = filedialog.askopenfilenames(
             title=f"Open {OPENFILEFOLDEREMOJI}",
-            filetypes=[("Excel File", "*.xlsx"), ("Excel File", "*.xls")],
+            filetypes=[("Excel File", "*.xlsx *.xls")],
         )
         if not files:
             raise ValueError("No excel sheet selected.")
